@@ -23,6 +23,7 @@ mapping(string => uint8) hashes;
 
   }
 
+// can call safeMint in the createCollectible method
  function safeMint(address to) public onlyOwner {
         _safeMint(to, _tokenIds.current());
         _tokenIds.increment();
@@ -32,6 +33,7 @@ mapping(string => uint8) hashes;
         super._burn(tokenId);
     }
 
+//Allows override so can set tokenURI below
     function tokenURI(uint256 tokenId)
         public
         view
@@ -42,12 +44,12 @@ mapping(string => uint8) hashes;
     }
 
 
-  function createCollectible(string memory hash, string memory tokenURI) public returns (uint256) {
+  function createCollectible(string memory hash, string memory tokenURI_) public returns (uint256) {
   require(hashes [hash] != 1);
   hashes[hash] = 1;
   _tokenIds.increment();
   uint256 newItemId = _tokenIds.current();
-  _setTokenURI(newItemId, tokenURI);
+  _setTokenURI(newItemId, tokenURI_);
   return newItemId;
 }
 

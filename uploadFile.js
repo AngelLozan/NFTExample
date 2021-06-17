@@ -12,14 +12,14 @@ const FormData = require("form-data");
 
     //we gather a local file for this example, but any valid readStream source will work here.
     let data = new FormData();
-    data.append('file', fs.createReadStream('/Users/devdirector/Desktop/TRVL.png'));
+    data.append('file', fs.createReadStream('/path/to/file.png));
 
     //You'll need to make sure that the metadata is in the form of a JSON object that's been convered to a string
     //metadata is optional
     const metadata = JSON.stringify({
-        "name":"TRVL",
-        "hash": "QmRBEPaiVmK8n7xcuqghaTukiANfhxCjqUmiKaXxAfnMsY", 
-        "by": "Jaleh Sadravi"
+        "name":"A Name",
+        "hash": "XXXXXXXXXX", 
+        "by": "Artist"
     });
     data.append('pinataMetadata', metadata);
 
@@ -46,8 +46,8 @@ const FormData = require("form-data");
             maxBodyLength: 'Infinity', //this is needed to prevent axios from erroring out with large files
             headers: {
                 'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-                pinata_api_key: '95acd6fa683c5754fdf5',
-                pinata_secret_api_key: '93c1301462274caa857feffe5757496d6f6221490329d1cd8a4e37ed8233c951'
+                pinata_api_key: 'XXXXXXXXXXX',
+                pinata_secret_api_key: 'XXXXXXXXXXXXXXXXXXXXXXXX'
             }
         })
         .then(function (response) {

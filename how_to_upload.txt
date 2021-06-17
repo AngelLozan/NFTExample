@@ -1,1 +1,1 @@
-//just type in console: node uploadFile.js
+//Type in console: node uploadFile.js
